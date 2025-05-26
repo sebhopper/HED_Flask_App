@@ -69,5 +69,21 @@ def download_file():
         flash(f'Error downloading file: {e}')
         return redirect(url_for('index'))
 
+@app.route('/view_results')
+def view_results():
+    """Render the results page"""
+    output_file_path = os.path.join(os.getcwd(), 'processed_results.txt')
+
+    try:
+        with open(output_file_path, 'r', encoding='utf-8') as file:
+            results = file.readlines()
+
+    except FileNotFoundError:
+        flash('Processed results file not found. Please upload and process a file first.')
+        return redirect(url_for('index'))
+    
+    return render_template('view_results.html', results=results)
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=int(os.getenv("PORT", default=5000)), host="0.0.0.0")
