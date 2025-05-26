@@ -8,6 +8,17 @@ from HED_Flask_App.HED_Tool.core.hed_calculate import calculate
 from HED_Flask_App.HED_Tool.utils.categorise_allele import HLA_CLASS_I, HLA_CLASS_I_PSEUDO, \
                                              HLA_CLASS_II, OTHER_NON_HLA
 
+def process_patient(patient, alignment_dir, ard_status):
+    """Function to build alignments of sequences for a patient from their typings and produce HED results"""
+    results = []
+    allele_sequences = build_alignments(patient, alignment_dir, ard_status)
+    for classification in allele_sequences:
+        results.extend(process_sequences(classification))
+
+    results = produce_results(patient.get('patient_id'), results)
+
+    return results
+
 def process_sequences(classification):
     """Extract genes and alleles from classifications and compute HED"""
     results = []
@@ -18,19 +29,6 @@ def process_sequences(classification):
                             'HED': hed})
 
     return results
-
-def process_patient(patient, alignment_dir, ard_status):
-    """Function to build alignments of sequences for a patient from their typings """
-    results = []
-
-    allele_sequences = build_alignments(patient, alignment_dir, ard_status)
-    for classification in allele_sequences:
-        results.extend(process_sequences(classification))
-
-    results = produce_results(patient.get('patient_id'), results)
-
-    return results
-
 
 def produce_results(patient, results):
     """Function to produce the final results dict"""

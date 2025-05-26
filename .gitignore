@@ -1,2 +1,4 @@
 HED_Tool/resources/alignments
 HED_Tool/utils/alignment_parsing.py
+HED_Tool/utils/build_example_files.py
+.env

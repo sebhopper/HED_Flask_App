@@ -16,10 +16,7 @@ HLA_CLASS_II = ['DRA', 'DRB1',	'DRB2',	'DRB3',	'DRB4',	'DRB5',
                 'DMA', 'DMB', 'DOA', 'DOB']
 OTHER_NON_HLA = ['HFE', 'MICA', 'MICB', 'TAP1', 'TAP2']
 
-VALID_TYPING = ['A', 'B', 'C', 'E', 'F', 'G', 'H',
-                'DRA', 'DRB1', 'DRB2', 'DRB3', 'DRB4', 'DRB5','DRB6', 'DRB7', 'DRB8', 'DRB9', 
-                'DQA1', 'DQA2', 'DQB1', 'DQB2', 'DPA1', 'DPA2', 'DPB1', 'DPB2', 'DMA', 'DMB', 
-                'DOA', 'DOB', 'MICA', 'MICB', 'TAP1', 'TAP2']
+VALID_TYPING = ['A', 'B', 'C', 'DRB1', 'DQB1', 'DPB1']
 
 def read(input_filepath):
     """Script for reading in the data and making it parsable for further use"""
@@ -71,6 +68,8 @@ def extract_patient_data(line: str):
             gene_dict = {}
             for typing in extracted_typing:
                 gene = typing.split('*')[0]
+                if gene not in VALID_TYPING:
+                    continue
                 if gene not in gene_dict:
                     gene_dict[gene] = []
                 gene_dict[gene].append(typing)

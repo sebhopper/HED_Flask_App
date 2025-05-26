@@ -1,0 +1,2 @@
+{'patient_id': 'pat002', 'batch_results': {'class_i': 8.019337016574585, 'class_ii': 0}, 'individual_results': [{'gene': 'A', 'HED': 10.502762430939226}, {'gene': 'C', 'HED': 5.535911602209945}, {'gene': 'DRB1', 'HED': 0}]}
+{'patient_id': 'P009', 'batch_results': {'class_i': 7.7983425414364635, 'class_ii': 0}, 'individual_results': [{'gene': 'A', 'HED': 10.502762430939226}, {'gene': 'C', 'HED': 5.093922651933702}, {'gene': 'DRB1', 'HED': 0}, {'gene': 'DPB1', 'HED': 0}]}
